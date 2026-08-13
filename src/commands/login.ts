@@ -1,5 +1,6 @@
 import { connect } from '../browser/chrome.js';
 import { log } from '../core/logger.js';
+import { withTimeout } from '../core/timeout.js';
 import { autoDismissDialogs, gotoMelon, isLoggedIn } from '../melon/client.js';
 import { YTM_ORIGIN } from '../ytmusic/innertube.js';
 
@@ -14,15 +15,19 @@ export const loginCommand = async (): Promise<void> => {
     const session = await connect();
     autoDismissDialogs(session.page);
 
-    await gotoMelon(session.page, '/');
-    const melon = await isLoggedIn(session.page);
+    await withTimeout(gotoMelon(session.page, '/'), 60000, '멜론 접속');
+    const melon = await withTimeout(isLoggedIn(session.page), 15000, '멜론 로그인 확인');
 
-    await session.page.goto(YTM_ORIGIN, { waitUntil: 'domcontentloaded' });
+    await withTimeout(
+        session.page.goto(YTM_ORIGIN, { waitUntil: 'domcontentloaded' }),
+        60000,
+        '유튜브 뮤직 접속',
+    );
     await session.page.waitForTimeout(3000);
-    const ytmusic = await session.page.evaluate(() => {
+    const ytmusic = await withTimeout(session.page.evaluate(() => {
         const data = (window as unknown as { ytcfg?: { data_?: Record<string, unknown> } }).ytcfg?.data_;
         return Boolean(data?.['LOGGED_IN']);
-    });
+    }), 15000, '유튜브 뮤직 로그인 확인');
 
     log.step('로그인 상태');
     log.info(`  멜론        ${melon ? '✓ 로그인됨' : '✗ 로그아웃'}`);
