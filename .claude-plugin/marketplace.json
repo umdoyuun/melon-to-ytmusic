@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "melon-to-ytmusic",
+  "description": "멜론 → 유튜브 뮤직 플레이리스트 이전 도구",
+  "owner": {
+    "name": "Eom Doyun"
+  },
+  "plugins": [
+    {
+      "name": "melon-to-ytmusic",
+      "description": "멜론 플레이리스트를 유튜브 뮤직으로 옮기고, 무드별로 나눠 담습니다.",
+      "author": {
+        "name": "Eom Doyun"
+      },
+      "category": "productivity",
+      "source": "./",
+      "homepage": "https://github.com/umdoyuun/melon-to-ytmusic"
+    }
+  ]
+}

@@ -38,10 +38,19 @@ export const findChrome = (): string => {
     return found;
 };
 
-export const config = {
-    /** 스크래핑 결과와 진행 상태를 저장할 디렉터리 */
-    dataDir: resolve(process.env.MTYM_DATA_DIR ?? 'data'),
+/**
+ * 결과물 디렉터리.
+ *
+ * 플러그인으로 설치해서 쓰면 코드가 관리되는 캐시 위치에 놓이기 때문에,
+ * 결과물을 그 안에 두면 플러그인 업데이트 때 날아갈 수 있다.
+ * 그래서 `--data-dir`로 바깥을 가리킬 수 있게 해뒀다.
+ */
+let dataDir = resolve(process.env.MTYM_DATA_DIR ?? 'data');
 
+export const setDataDir = (dir: string): void => { dataDir = resolve(dir); };
+export const getDataDir = (): string => dataDir;
+
+export const config = {
     /**
      * 로그인 세션을 담아둘 Chrome 전용 프로필.
      * 평소 쓰는 프로필과 분리해서, 자동화가 개인 브라우저를 건드리지 않게 한다.
@@ -63,4 +72,4 @@ export const config = {
     lowScoreThreshold: Number(process.env.MTYM_LOW_SCORE ?? 0.75),
 } as const;
 
-export const dataPath = (name: string): string => resolve(config.dataDir, name);
+export const dataPath = (name: string): string => resolve(getDataDir(), name);

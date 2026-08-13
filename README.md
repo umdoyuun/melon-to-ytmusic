@@ -57,6 +57,29 @@ npm run mtym -- moods
 
 중간에 끊겨도 괜찮습니다. 진행 상태를 계속 저장하기 때문에 같은 명령을 다시 실행하면 이어서 갑니다.
 
+## Claude Code로 쓰기
+
+명령어를 외우기 싫으면 스킬로 설치하면 됩니다. 그러면 "멜론 플레이리스트 유튜브 뮤직으로 옮겨줘"
+정도로 말해도 알아서 순서대로 돌려주고, 매칭이 이상한 곡만 추려서 보고해줍니다.
+
+```bash
+npm run skill:install              # ~/.claude/skills 로
+npm run skill:install -- --project # 이 프로젝트에만 (./.claude/skills)
+```
+
+레포를 업데이트하면 다시 실행하세요. 복사해가는 방식이라 자동으로 따라가지 않습니다.
+
+플러그인으로 설치할 수도 있습니다. 이러면 클론할 필요 없이 코드까지 같이 딸려옵니다.
+
+```
+/plugin marketplace add umdoyuun/melon-to-ytmusic
+/plugin install melon-to-ytmusic
+```
+
+설치 직후에는 의존성이 없으니 스킬이 알아서 `scripts/bootstrap.js`를 한 번 돌립니다.
+결과물은 플러그인 디렉터리 밖(`~/.melon-to-ytmusic/data`)에 저장되니 플러그인을 업데이트해도
+남아 있습니다. 직접 지정하려면 `--data-dir`을 쓰면 됩니다.
+
 ## 나오는 파일들
 
 전부 `data/` 아래에 쌓입니다. 듣는 음악이랑 계정 식별자가 들어있어서 `.gitignore`에 넣어뒀습니다.

@@ -11,6 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
+    "bootstrap": "node scripts/bootstrap.js",
+    "skill:install": "node scripts/install-skill.js",
     "mtym": "tsx src/cli.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

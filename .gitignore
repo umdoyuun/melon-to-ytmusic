@@ -7,6 +7,9 @@ data/
 # 크롬 전용 프로필 (로그인 세션 쿠키 포함)
 .chrome-profile/
 
+# skill:install --project 로 복사된 사본. 원본은 skills/ 에 있다.
+.claude/skills/
+
 *.log
 .env
 .env.local

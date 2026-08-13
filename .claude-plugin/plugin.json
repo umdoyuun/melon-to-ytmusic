@@ -1,0 +1,17 @@
+{
+  "name": "melon-to-ytmusic",
+  "version": "1.0.0",
+  "description": "멜론 플레이리스트를 유튜브 뮤직으로 옮기고, 무드별로 나눠 담습니다.",
+  "author": {
+    "name": "Eom Doyun"
+  },
+  "homepage": "https://github.com/umdoyuun/melon-to-ytmusic",
+  "repository": "https://github.com/umdoyuun/melon-to-ytmusic",
+  "license": "MIT",
+  "keywords": [
+    "melon",
+    "youtube-music",
+    "playlist",
+    "migration"
+  ]
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+import { getDataDir, setDataDir } from './config.js';
 import { log } from './core/logger.js';
 import { loginCommand } from './commands/login.js';
 import { migrateCommand } from './commands/migrate.js';
@@ -12,7 +13,17 @@ const program = new Command();
 program
     .name('mtym')
     .description('멜론 플레이리스트를 유튜브 뮤직으로 옮기고, 무드별로 나눠 담습니다.')
-    .version('1.0.0');
+    .version('1.0.0')
+    .option('--data-dir <path>', '결과물을 저장할 디렉터리 (기본: ./data)')
+    .hook('preAction', (command) => {
+        const dir = command.opts()['dataDir'] as string | undefined;
+        if (dir) setDataDir(dir);
+    });
+
+program
+    .command('where')
+    .description('결과물이 저장되는 위치를 보여줍니다')
+    .action(() => { log.info(getDataDir()); });
 
 program
     .command('login')
