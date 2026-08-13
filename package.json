@@ -1,0 +1,36 @@
+{
+  "name": "melon-to-ytmusic",
+  "version": "1.0.0",
+  "description": "멜론 플레이리스트를 유튜브 뮤직으로 옮기고, 무드별로 나눠 담는 CLI",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "mtym": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "mtym": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "melon",
+    "youtube-music",
+    "playlist",
+    "migration"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "playwright-core": "^1.49.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}

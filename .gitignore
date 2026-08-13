@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# 실행 결과물 — 개인 음악 취향과 계정 식별자(memberKey 등)가 들어있으므로 커밋하지 않는다
+data/
+
+# 크롬 전용 프로필 (로그인 세션 쿠키 포함)
+.chrome-profile/
+
+*.log
+.env
+.env.local
+.DS_Store
